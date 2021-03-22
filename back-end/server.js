@@ -3,10 +3,10 @@ const mysql = require('mysql');
 
 const app = express();
 
-//create connection
+//create connection * 'vec353.encs.concordia.ca' = server ,  else localhost
 const db = mysql.createConnection(
     {
-        host: 'vec353.encs.concordia.ca',
+        host: 'localhost',
         port:  '3306',
         user: 'vec353_4',
         password: 'Data353b',
@@ -22,6 +22,6 @@ db.connect((err) => {
     console.log('mysql connected...')
 })
 
-app.listen('3000', () => {
+app.listen('5000', () => {
     console.log('server started');
 })
