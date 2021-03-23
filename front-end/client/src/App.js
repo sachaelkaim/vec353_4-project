@@ -7,9 +7,12 @@ function App() {
 
   const getAllPeople = async () => {
     const response = await axios
-      .get("/all")
+      .get("/index.php")
       .catch((err) => console.log("Error", err));
-    if (response && response.data) setAllPeople(response.data);
+    if (response && response.data){
+      console.log(response.data);
+      setAllPeople(response.data);
+     } 
   };
 
   useEffect(() => {
@@ -21,7 +24,7 @@ function App() {
     <div className="App">
       {allPeople.map((item) => (
         <option key={item.PersonID} value={item.PersonID}>
-          {item.FirstName}
+          {item}
         </option>
       ))}
     </div>
