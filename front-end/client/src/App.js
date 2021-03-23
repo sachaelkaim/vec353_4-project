@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 function App() {
+  const [allPeople, setAllPeople] = useState([]);
+
+  const getAllPeople = async () => {
+    const response = await axios
+      .get("/all")
+      .catch((err) => console.log("Error", err));
+    if (response && response.data) setAllPeople(response.data);
+  };
+
+  useEffect(() => {
+    getAllPeople();
+    console.log(allPeople);
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {allPeople.map((item) => (
+        <option key={item.PersonID} value={item.PersonID}>
+          {item.FirstName}
+        </option>
+      ))}
     </div>
   );
 }
