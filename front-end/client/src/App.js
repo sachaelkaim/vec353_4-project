@@ -1,32 +1,19 @@
 import "./App.css";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import Navigation from "./components/Navigation.js";
+import Home from "./components/Home.js";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
-  const [allPeople, setAllPeople] = useState([]);
-
-  const getAllPeople = async () => {
-    const response = await axios
-      .get("/index.php")
-      .catch((err) => console.log("Error", err));
-    if (response && response.data){
-      console.log(response.data);
-      setAllPeople(response.data);
-     } 
-  };
-
-  useEffect(() => {
-    getAllPeople();
-    console.log(allPeople);
-  }, []);
-
   return (
-    <div className="App">
-      {allPeople.map((item) => (
-        <option key={item.PersonID} value={item.PersonID}>
-          {item}
-        </option>
-      ))}
+    <div>
+      <Router>
+        <Navigation />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="*" component={Home} />
+        </Switch>
+      </Router>
     </div>
   );
 }
