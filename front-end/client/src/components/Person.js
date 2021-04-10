@@ -26,9 +26,23 @@ const Person = () => {
     }
   };
 
-  useEffect(() => {
-    getAllPeopleID();
-  }, []);
+  /* DELETE PERSON */
+  const [deleteID, setDeleteID] = useState("");
+  const [refreshDropdownDelete, setRefreshDropdownDelete] = useState(false);
+  const handleSelectDeleteID = (e) => {
+    setDeleteID(e);
+  };
+
+  const deletePerson = async () => {
+    if(deleteID !== ""){
+        setRefreshDropdownDelete(!refreshDropdownDelete);
+        const response = await axios
+      .post("/person/deletePerson.php", deleteID)
+      .catch((error) => {
+        console.error(error);
+      });
+    }
+  };
 
   /* EDIT PERSON */
   const [editPersonID, setEditPersonID] = useState("");
@@ -53,11 +67,6 @@ const Person = () => {
     console.log(body);
     const response = await axios
       .post("/person/editPerson.php", body)
-      .then((response) => {
-        if (response && response.data) {
-          console.log(response.data);
-        }
-      })
       .catch((error) => {
         console.error(error);
       });
@@ -88,6 +97,11 @@ const Person = () => {
     setPersonID(e);
   };
 
+  /* DISPLAY DROPDOWN ID'S */
+  useEffect(() => {
+    getAllPeopleID();
+  }, [refreshDropdownDelete]);
+
   return (
     <div className="home">
       <div className="person-title">PERSON</div>
@@ -96,7 +110,33 @@ const Person = () => {
           <div>asdasd</div>
         </Tab>
         <Tab eventKey="Delete" title="Delete">
-          ff
+           <br />
+          <Container>
+            <Form>
+              <Form.Group
+                as={Row}
+                controlId=""
+                className="justify-content-sm-center"
+              >
+                <DropdownButton
+                  className="dropdown-scroll"
+                  title="Person ID"
+                  onSelect={handleSelectDeleteID}
+                  variant="dark"
+                >
+                  {allID.map((item) => (
+                    <div key={item}>
+                      <Dropdown.Item eventKey={item}>{item}</Dropdown.Item>
+                    </div>
+                  ))}
+                </DropdownButton>
+                &nbsp;&nbsp;&nbsp;
+                <Button className="submit" onClick={deletePerson}>
+                  Submit
+                </Button>
+              </Form.Group>
+            </Form>
+          </Container>
         </Tab>
         <Tab eventKey="Edit" title="Edit">
           <br />
