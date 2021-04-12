@@ -9,6 +9,7 @@ require '../db.php';
 
 /* DISPLAY PERSON */
 $data = json_decode(file_get_contents("php://input"));
+
 $sql = mysqli_query($conn, "SELECT * FROM Person WHERE PersonID = $data");
 $storeArray = array();
 
@@ -26,3 +27,5 @@ while ($row = mysqli_fetch_array($sql)) {
   $storeArray[] = $row["Citizenship"];
 }
 echo json_encode($storeArray, JSON_PRETTY_PRINT);
+$conn->close();
+?>

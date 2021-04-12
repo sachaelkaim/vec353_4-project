@@ -10,3 +10,5 @@ require '../db.php';
 /* DELETE PERSON */
 $data = json_decode(file_get_contents("php://input"));
 $sql = mysqli_query($conn, "DELETE FROM Person WHERE PersonID = $data");
+$conn->close();
+?>

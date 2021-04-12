@@ -26,6 +26,48 @@ const Person = () => {
     }
   };
 
+  /* CREATE PERSON */
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [dob, setDob] = useState("");
+  const [medicNumber, setMedicNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [province, setProvince] = useState("");
+  const [telNumber, setTelNumber] = useState("");
+  const [postalCode, setPostalCode] = useState("");
+  const [email, setEmail] = useState("");
+  const [citizenship, setCitizenship] = useState("");
+  const [refreshDropdownCreate, setRefreshDropdownCreate] = useState(false);
+
+  const createPerson = async () => {
+    setRefreshDropdownCreate(!refreshDropdownCreate);
+    let body = {
+      firstName: firstName,
+      lastName: lastName,
+      dob: dob,
+      medicNumber: medicNumber,
+      address: address,
+      city: city,
+      province: province,
+      telNumber: telNumber,
+      postalCode: postalCode,
+      email: email,
+      citizenship: citizenship,
+    };
+    console.log(body);
+    const response = await axios
+      .post("/person/createPerson.php", body)
+      .then((response) => {
+        if (response && response.data) {
+          console.log(response.data);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   /* DELETE PERSON */
   const [deleteID, setDeleteID] = useState("");
   const [refreshDropdownDelete, setRefreshDropdownDelete] = useState(false);
@@ -34,13 +76,13 @@ const Person = () => {
   };
 
   const deletePerson = async () => {
-    if(deleteID !== ""){
-        setRefreshDropdownDelete(!refreshDropdownDelete);
-        const response = await axios
-      .post("/person/deletePerson.php", deleteID)
-      .catch((error) => {
-        console.error(error);
-      });
+    if (deleteID !== "") {
+      setRefreshDropdownDelete(!refreshDropdownDelete);
+      const response = await axios
+        .post("/person/deletePerson.php", deleteID)
+        .catch((error) => {
+          console.error(error);
+        });
     }
   };
 
@@ -58,18 +100,18 @@ const Person = () => {
   };
 
   const editPerson = async () => {
-    if(editPersonID !== "" && editColumn !== "" && editChange !== ""){
-    let body = {
-      editPersonID,  
-      editColumn,
-      editChange,
-    };
-    console.log(body);
-    const response = await axios
-      .post("/person/editPerson.php", body)
-      .catch((error) => {
-        console.error(error);
-      });
+    if (editPersonID !== "" && editColumn !== "" && editChange !== "") {
+      let body = {
+        editPersonID,
+        editColumn,
+        editChange,
+      };
+      console.log(body);
+      const response = await axios
+        .post("/person/editPerson.php", body)
+        .catch((error) => {
+          console.error(error);
+        });
     }
   };
 
@@ -78,18 +120,18 @@ const Person = () => {
   const [person, setPerson] = useState([]);
 
   const getPersonInfo = async () => {
-    if(personID !== ""){
-        const response = await axios
-      .post("/person/displayPerson.php", personID)
-      .then((response) => {
-        if (response && response.data) {
-          console.log(response.data);
-          setPerson(response.data);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (personID !== "") {
+      const response = await axios
+        .post("/person/displayPerson.php", personID)
+        .then((response) => {
+          if (response && response.data) {
+            console.log(response.data);
+            setPerson(response.data);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   };
 
@@ -100,17 +142,189 @@ const Person = () => {
   /* DISPLAY DROPDOWN ID'S */
   useEffect(() => {
     getAllPeopleID();
-  }, [refreshDropdownDelete]);
+  }, [refreshDropdownDelete, refreshDropdownCreate]);
 
   return (
     <div className="home">
       <div className="person-title">PERSON</div>
       <Tabs id="uncontrolled-tab-example">
         <Tab eventKey="Create" title="Create">
-          <div>asdasd</div>
+          <br />
+          <Container style={{ maxWidth: "40%" }}>
+            <Form>
+              <Form.Group as={Row} controlId="">
+                <Form.Label column sm="2">
+                  First Name
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    type="text"
+                    placeholder=""
+                    value={firstName}
+                    onChange={(e) => {
+                      setFirstName(e.target.value);
+                    }}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="">
+                <Form.Label column sm="2">
+                  Last Name
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    type="text"
+                    placeholder=""
+                    value={lastName}
+                    onChange={(e) => {
+                      setLastName(e.target.value);
+                    }}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="">
+                <Form.Label column sm="2">
+                  DoB
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    type="text"
+                    placeholder=""
+                    value={dob}
+                    onChange={(e) => {
+                      setDob(e.target.value);
+                    }}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="">
+                <Form.Label column sm="2">
+                  Medicare Number
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    type="text"
+                    placeholder=""
+                    value={medicNumber}
+                    onChange={(e) => {
+                      setMedicNumber(e.target.value);
+                    }}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="">
+                <Form.Label column sm="2">
+                  Address
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    type="text"
+                    placeholder=""
+                    value={address}
+                    onChange={(e) => {
+                      setAddress(e.target.value);
+                    }}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="">
+                <Form.Label column sm="2">
+                  City
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    type="text"
+                    placeholder=""
+                    value={city}
+                    onChange={(e) => {
+                      setCity(e.target.value);
+                    }}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="">
+                <Form.Label column sm="2">
+                  Province
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    type="text"
+                    placeholder=""
+                    value={province}
+                    onChange={(e) => {
+                      setProvince(e.target.value);
+                    }}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="">
+                <Form.Label column sm="2">
+                  Telephone Number
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    type="text"
+                    placeholder=""
+                    value={telNumber}
+                    onChange={(e) => {
+                      setTelNumber(e.target.value);
+                    }}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="">
+                <Form.Label column sm="2">
+                  Postal Code
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    type="text"
+                    placeholder=""
+                    value={postalCode}
+                    onChange={(e) => {
+                      setPostalCode(e.target.value);
+                    }}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="">
+                <Form.Label column sm="2">
+                  Email Address
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    type="text"
+                    placeholder=""
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="">
+                <Form.Label column sm="2">
+                  Citizenship
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control
+                    type="text"
+                    placeholder=""
+                    value={citizenship}
+                    onChange={(e) => {
+                      setCitizenship(e.target.value);
+                    }}
+                  />
+                </Col>
+              </Form.Group>
+              <Button className="submit" onClick={createPerson}>
+                Submit
+              </Button>
+            </Form>
+          </Container>
         </Tab>
         <Tab eventKey="Delete" title="Delete">
-           <br />
+          <br />
           <Container>
             <Form>
               <Form.Group
@@ -147,7 +361,7 @@ const Person = () => {
                 controlId=""
                 className="justify-content-sm-center"
               >
-                   <DropdownButton
+                <DropdownButton
                   className="dropdown-scroll"
                   title="Person ID"
                   onSelect={handleSelectEditID}
@@ -168,26 +382,38 @@ const Person = () => {
                   <Dropdown.Item eventKey="FirstName">FirstName</Dropdown.Item>
                   <Dropdown.Item eventKey="LastName">LastName</Dropdown.Item>
                   <Dropdown.Item eventKey="DoB">DoB</Dropdown.Item>
-                  <Dropdown.Item eventKey="MedicareNum">MedicareNum</Dropdown.Item>
+                  <Dropdown.Item eventKey="MedicareNum">
+                    MedicareNum
+                  </Dropdown.Item>
                   <Dropdown.Item eventKey="Address">Address</Dropdown.Item>
                   <Dropdown.Item eventKey="City">City</Dropdown.Item>
                   <Dropdown.Item eventKey="Province">Province</Dropdown.Item>
-                  <Dropdown.Item eventKey="Telephone Number">Telephone Number</Dropdown.Item>
-                  <Dropdown.Item eventKey="Postal Code">Postal Code</Dropdown.Item>
-                  <Dropdown.Item eventKey="Email Address">Email Address</Dropdown.Item>
-                  <Dropdown.Item eventKey="Citizenship">Citizenship</Dropdown.Item>
+                  <Dropdown.Item eventKey="Telephone Number">
+                    Telephone Number
+                  </Dropdown.Item>
+                  <Dropdown.Item eventKey="Postal Code">
+                    Postal Code
+                  </Dropdown.Item>
+                  <Dropdown.Item eventKey="Email Address">
+                    Email Address
+                  </Dropdown.Item>
+                  <Dropdown.Item eventKey="Citizenship">
+                    Citizenship
+                  </Dropdown.Item>
                 </DropdownButton>
                 <Col sm="5">
                   <Form.Control
                     type="text"
-                    placeholder="ID"
+                    placeholder=""
                     value={editChange}
                     onChange={(e) => {
                       setEditChange(e.target.value);
                     }}
                   />
                 </Col>
-                <Button onClick={editPerson} className="submit">Submit</Button>
+                <Button onClick={editPerson} className="submit">
+                  Submit
+                </Button>
               </Form.Group>
             </Form>
           </Container>
