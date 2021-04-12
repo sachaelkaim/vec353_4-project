@@ -7,11 +7,11 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 require '../db.php';
 
 /* ALL ID PERSON */
-$sql = mysqli_query($conn, "SELECT * FROM Person");
+$sql = mysqli_query($conn, "SELECT * FROM PublicHealthWorker");
 $storeArray = array();
 
 while ($row = mysqli_fetch_array($sql)) {
-  $storeArray[] = $row["PersonID"];
+  $storeArray[] = $row["EmployeeID"];
 }
 echo json_encode($storeArray, JSON_PRETTY_PRINT);
 $conn->close();
