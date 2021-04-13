@@ -12,6 +12,7 @@ import {
   Dropdown,
 } from "react-bootstrap";
 
+/* 3. */
 const Facility = () => {
   /* ALL PUBLIC HEALTH FACILITY ID'S */
   const [allID, setAllID] = useState([]);
@@ -85,7 +86,7 @@ const Facility = () => {
     }
   };
 
-  /* EDIT PUBLIC HEALTH WORKER */
+  /* EDIT PUBLIC HEALTH FACILITY */
   const [editFacilityID, setEditFacilityID] = useState("");
   const [editColumn, setEditColumn] = useState("");
   const [editChange, setEditChange] = useState("");
@@ -114,7 +115,7 @@ const Facility = () => {
     }
   };
 
-  /* DISPLAY PUBLIC HEALTH WORKER */
+  /* DISPLAY PUBLIC HEALTH FACILITY */
   const [facilityID, setFacilityID] = useState("");
   const [facility, setfacility] = useState([]);
 
@@ -145,7 +146,7 @@ const Facility = () => {
 
   return (
     <div className="home">
-      <div className="person-title">PUBLIC HEALTH CENTER</div>
+      <div className="person-title">3.FACILITY</div>
       <Tabs id="uncontrolled-tab-example">
         <Tab eventKey="Create" title="Create">
           <br />
@@ -302,7 +303,7 @@ const Facility = () => {
               >
                 <DropdownButton
                   className="dropdown-scroll"
-                  title="Employee ID"
+                  title="Facility ID"
                   onSelect={handleSelectEditID}
                   variant="dark"
                 >
@@ -362,7 +363,7 @@ const Facility = () => {
               >
                 <DropdownButton
                   className="dropdown-scroll"
-                  title="Employee ID"
+                  title="Facility ID"
                   onSelect={handleSelectDisplayID}
                   variant="dark"
                 >
@@ -378,20 +379,20 @@ const Facility = () => {
                 </Button>
               </Form.Group>
             </Form>
-            <div style={{ fontWeight: "bold" }}>
-              Type: &nbsp;{facility[0]}
+            <div >
+            <span style={{ fontWeight: "bold" }}>Type:</span> &nbsp;{facility[0]}
               <br />
-              Web Address:&nbsp;{facility[1]}
+              <span style={{ fontWeight: "bold" }}>Web Address:</span>&nbsp;{facility[1]}
               <br />
-              Phone Number:&nbsp;{facility[2]}
+              <span style={{ fontWeight: "bold" }}>Phone Number:</span>&nbsp;{facility[2]}
               <br />
-              Address:&nbsp;{facility[3]}
+              <span style={{ fontWeight: "bold" }}>Address:</span>&nbsp;{facility[3]}
               <br />
-              Name:&nbsp;{facility[4]}
+              <span style={{ fontWeight: "bold" }}>Name:</span>&nbsp;{facility[4]}
               <br />
-              Testing Method:&nbsp;{facility[5]}
+              <span style={{ fontWeight: "bold" }}>Testing Method:</span>&nbsp;{facility[5]}
               <br />
-              Drive Thru Testing:&nbsp;{facility[6]}
+              <span style={{ fontWeight: "bold" }}>Drive Thru Testing:</span>&nbsp;{facility[6]}
               <br />
             </div>
           </Container>

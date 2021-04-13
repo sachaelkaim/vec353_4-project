@@ -12,6 +12,7 @@ import {
   Dropdown,
 } from "react-bootstrap";
 
+/* 1. */
 const Person = () => {
   /* ALL PERSON ID'S */
   const [allID, setAllID] = useState([]);
@@ -146,7 +147,7 @@ const Person = () => {
 
   return (
     <div className="home">
-      <div className="person-title">PERSON</div>
+      <div className="person-title">1.PERSON</div>
       <Tabs id="uncontrolled-tab-example">
         <Tab eventKey="Create" title="Create">
           <br />
@@ -445,11 +446,41 @@ const Person = () => {
                 </Button>
               </Form.Group>
             </Form>
-            {person.map((item) => (
-              <div key={item.FirstName} style={{ fontWeight: "bold" }}>
-                {item}
-              </div>
-            ))}
+            <div>
+              <span style={{ fontWeight: "bold" }}>First Name:</span> &nbsp;
+              {person[0]}
+              <br />
+              <span style={{ fontWeight: "bold" }}>Last Name:</span>&nbsp;
+              {person[1]}
+              <br />
+              <span style={{ fontWeight: "bold" }}>DoB:</span>&nbsp;
+              {person[2]}
+              <br />
+              <span style={{ fontWeight: "bold" }}>MedicareNum:</span>&nbsp;
+              {person[3]}
+              <br />
+              <span style={{ fontWeight: "bold" }}>Address:</span>&nbsp;
+              {person[4]}
+              <br />
+              <span style={{ fontWeight: "bold" }}>City:</span>&nbsp;
+              {person[5]}
+              <br />
+              <span style={{ fontWeight: "bold" }}>Province:</span>&nbsp;
+              {person[6]}
+              <br />
+              <span style={{ fontWeight: "bold" }}>Telephone Num:</span>&nbsp;
+              {person[7]}
+              <br />
+              <span style={{ fontWeight: "bold" }}>Postal Code:</span>&nbsp;
+              {person[8]}
+              <br />
+              <span style={{ fontWeight: "bold" }}>Email:</span>&nbsp;
+              {person[9]}
+              <br />
+              <span style={{ fontWeight: "bold" }}>Citizenship:</span>&nbsp;
+              {person[10]}
+              <br />
+            </div>
           </Container>
         </Tab>
       </Tabs>

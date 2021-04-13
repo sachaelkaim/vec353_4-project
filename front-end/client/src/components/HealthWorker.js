@@ -12,6 +12,7 @@ import {
   Dropdown,
 } from "react-bootstrap";
 
+/* 2. */
 const HealthWorker = () => {
   /* ALL PUBLIC HEALTH WORKER ID'S */
   const [allID, setAllID] = useState([]);
@@ -38,7 +39,7 @@ const HealthWorker = () => {
     let body = {
       schedule: schedule,
       facility: facility,
-      personID: personID
+      personID: personID,
     };
     console.log(body);
     const response = await axios
@@ -137,7 +138,7 @@ const HealthWorker = () => {
 
   return (
     <div className="home">
-      <div className="person-title">PUBLIC HEALTH WORKER</div>
+      <div className="person-title">2.PUBLIC HEALTH WORKER</div>
       <Tabs id="uncontrolled-tab-example">
         <Tab eventKey="Create" title="Create">
           <br />
@@ -298,12 +299,15 @@ const HealthWorker = () => {
                 </Button>
               </Form.Group>
             </Form>
-            <div style={{ fontWeight: "bold" }}>
-              Schedule: &nbsp;{employee[0]}
+            <div>
+              <span style={{ fontWeight: "bold" }}>Schedule:</span> &nbsp;
+              {employee[0]}
               <br />
-              FacilityID:&nbsp;{employee[1]}
+              <span style={{ fontWeight: "bold" }}>FacilityID:</span>&nbsp;
+              {employee[1]}
               <br />
-              PersonID:&nbsp;{employee[2]}
+              <span style={{ fontWeight: "bold" }}>PersonID:</span>&nbsp;
+              {employee[2]}
               <br />
             </div>
           </Container>
