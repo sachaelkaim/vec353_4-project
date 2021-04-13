@@ -40,5 +40,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:80/353/back-end"
+  "proxy": "http://localhost:8080/353/vec353_4-project/back-end"
 }
