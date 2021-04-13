@@ -19,7 +19,7 @@ const HealthWorker = () => {
 
   const getAllPeopleID = async () => {
     const response = await axios
-      .get("/healthWorker/allEmployeeID.php")
+      .get("/back-end/healthWorker/allEmployeeID.php")
       .catch((err) => console.log("Error", err));
     if (response && response.data) {
       console.log(response.data);
@@ -43,7 +43,7 @@ const HealthWorker = () => {
     };
     console.log(body);
     const response = await axios
-      .post("/healthWorker/createEmployee.php", body)
+      .post("/back-end/healthWorker/createEmployee.php", body)
       .then((response) => {
         if (response && response.data) {
           console.log(response.data);
@@ -66,7 +66,7 @@ const HealthWorker = () => {
     if (deleteID !== "") {
       setRefreshDropdownDelete(!refreshDropdownDelete);
       const response = await axios
-        .post("/healthWorker/deleteEmployee.php", deleteID)
+        .post("/back-end/healthWorker/deleteEmployee.php", deleteID)
         .then((response) => {
           if (response && response.data) {
             console.log(response.data);
@@ -100,7 +100,7 @@ const HealthWorker = () => {
       };
       console.log(body);
       const response = await axios
-        .post("/healthWorker/editEmployee.php", body)
+        .post("/back-end/healthWorker/editEmployee.php", body)
         .catch((error) => {
           console.error(error);
         });
@@ -114,7 +114,7 @@ const HealthWorker = () => {
   const getEmployeeInfo = async () => {
     if (employeeID !== "") {
       const response = await axios
-        .post("/healthWorker/displayEmployee.php", employeeID)
+        .post("/back-end/healthWorker/displayEmployee.php", employeeID)
         .then((response) => {
           if (response && response.data) {
             console.log(response.data);

@@ -19,7 +19,7 @@ const Facility = () => {
 
   const getAllFacilityID = async () => {
     const response = await axios
-      .get("/healthCenter/allFacilityID.php")
+      .get("/back-end/healthCenter/allFacilityID.php")
       .catch((err) => console.log("Error", err));
     if (response && response.data) {
       console.log(response.data);
@@ -39,7 +39,6 @@ const Facility = () => {
   const [refreshDropdownCreate, setRefreshDropdownCreate] = useState(false);
 
   const createPublicHealthFacility = async () => {
-    console.log("hello");
     setRefreshDropdownCreate(!refreshDropdownCreate);
     let body = {
       type: type,
@@ -52,7 +51,7 @@ const Facility = () => {
     };
     console.log(body);
     const response = await axios
-      .post("/healthCenter/createFacility.php", body)
+      .post("/back-end/healthCenter/createFacility.php", body)
       .then((response) => {
         if (response && response.data) {
           console.log(response.data);
@@ -74,7 +73,7 @@ const Facility = () => {
     if (deleteID !== "") {
       setRefreshDropdownDelete(!refreshDropdownDelete);
       const response = await axios
-        .post("/healthCenter/deleteFacility.php", deleteID)
+        .post("/back-end/healthCenter/deleteFacility.php", deleteID)
         .then((response) => {
           if (response && response.data) {
             console.log(response.data);
@@ -108,7 +107,7 @@ const Facility = () => {
       };
       console.log(body);
       const response = await axios
-        .post("/healthCenter/editHealthCenter.php", body)
+        .post("/back-end/healthCenter/editHealthCenter.php", body)
         .catch((error) => {
           console.error(error);
         });
@@ -122,7 +121,7 @@ const Facility = () => {
   const getFacilityInfo = async () => {
     if (facilityID !== "") {
       const response = await axios
-        .post("/healthCenter/displayFacility.php", facilityID)
+        .post("/back-end/healthCenter/displayFacility.php", facilityID)
         .then((response) => {
           if (response && response.data) {
             console.log(response.data);

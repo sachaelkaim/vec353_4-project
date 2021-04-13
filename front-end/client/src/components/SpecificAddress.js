@@ -11,7 +11,7 @@ const SpecificAddress = () => {
       address: address,
     };
     const response = await axios
-      .post("/specificAddress/getPeople.php", body)
+      .post("/back-end/specificAddress/getPeople.php", body)
       .then((response) => {
         if (response && response.data) {
           setPeople(response.data);
