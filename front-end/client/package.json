@@ -40,5 +40,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:80/vec353.encs.concordia.ca/"
+  "proxy": "http://localhost:8080/353/vec353_4-project"
 }
