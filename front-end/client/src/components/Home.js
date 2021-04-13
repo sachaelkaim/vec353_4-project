@@ -5,22 +5,36 @@ import Facility from "./Facility.js";
 import SpecificAddress from "./SpecificAddress.js";
 import AllFacilities from "./AllFacilities.js";
 import WorkersSpecificFacility from "./workersSpecificFacility.js";
+import Region from "./Region.js";
 
 const Home = () => {
-
   return (
     <div className="home">
-     <Person/>
-     <br/><br/><br/>
-     <HealthWorker/>
-     <br/><br/><br/>
-     <Facility/>
-     <br/><br/><br/>
-     <SpecificAddress/>
-     <br/><br/><br/>
-     <AllFacilities/>
-     <br/><br/><br/>
-     <WorkersSpecificFacility/>
+      <Person />
+      <br />
+      <br />
+      <br />
+      <HealthWorker />
+      <br />
+      <br />
+      <br />
+      <Facility />
+      <br />
+      <br />
+      <br />
+      <Region />
+      <br />
+      <br />
+      <br />
+      <SpecificAddress />
+      <br />
+      <br />
+      <br />
+      <AllFacilities />
+      <br />
+      <br />
+      <br />
+      <WorkersSpecificFacility />
     </div>
   );
 };
