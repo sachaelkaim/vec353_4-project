@@ -8,7 +8,7 @@ const AllFacilities = () => {
 
   const getAllFacilities = async () => {
     const response = await axios
-      .get("/allFacilities/getAllFacilities.php")
+      .get("/back-end/allFacilities/getAllFacilities.php")
       .then((response) => {
         if (response && response.data) {
             console.log(response.data);

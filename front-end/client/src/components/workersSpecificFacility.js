@@ -19,7 +19,7 @@ const WorkersSpecificFacility = () => {
 
   const getAllFacilityID = async () => {
     const response = await axios
-      .get("/healthCenter/allFacilityID.php")
+      .get("/back-end/healthCenter/allFacilityID.php")
       .catch((err) => console.log("Error", err));
     if (response && response.data) {
       console.log(response.data);

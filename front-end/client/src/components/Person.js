@@ -19,7 +19,7 @@ const Person = () => {
 
   const getAllPeopleID = async () => {
     const response = await axios
-      .get("/person/allID.php")
+      .get("/back-end/person/allID.php")
       .catch((err) => console.log("Error", err));
     if (response && response.data) {
       console.log(response.data);
@@ -58,7 +58,7 @@ const Person = () => {
     };
     console.log(body);
     const response = await axios
-      .post("/person/createPerson.php", body)
+      .post("/back-end/person/createPerson.php", body)
       .then((response) => {
         if (response && response.data) {
           console.log(response.data);
@@ -80,7 +80,7 @@ const Person = () => {
     if (deleteID !== "") {
       setRefreshDropdownDelete(!refreshDropdownDelete);
       const response = await axios
-        .post("/person/deletePerson.php", deleteID)
+        .post("/back-end/person/deletePerson.php", deleteID)
         .catch((error) => {
           console.error(error);
         });
@@ -109,7 +109,7 @@ const Person = () => {
       };
       console.log(body);
       const response = await axios
-        .post("/person/editPerson.php", body)
+        .post("/back-end/person/editPerson.php", body)
         .catch((error) => {
           console.error(error);
         });
@@ -123,7 +123,7 @@ const Person = () => {
   const getPersonInfo = async () => {
     if (personID !== "") {
       const response = await axios
-        .post("/person/displayPerson.php", personID)
+        .post("/back-end/person/displayPerson.php", personID)
         .then((response) => {
           if (response && response.data) {
             console.log(response.data);
