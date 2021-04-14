@@ -98,7 +98,7 @@ const Facility = () => {
     setEditColumn(e);
   };
 
-  const editEmployee = async () => {
+  const editFacility = async () => {
     if (editFacilityID !== "" && editColumn !== "" && editChange !== "") {
       let body = {
         editFacilityID,
@@ -344,7 +344,7 @@ const Facility = () => {
                     }}
                   />
                 </Col>
-                <Button onClick={editEmployee} className="submit">
+                <Button onClick={editFacility} className="submit">
                   Submit
                 </Button>
               </Form.Group>
@@ -378,20 +378,27 @@ const Facility = () => {
                 </Button>
               </Form.Group>
             </Form>
-            <div >
-            <span style={{ fontWeight: "bold" }}>Type:</span> &nbsp;{facility[0]}
+            <div>
+              <span style={{ fontWeight: "bold" }}>Type:</span> &nbsp;
+              {facility[0]}
               <br />
-              <span style={{ fontWeight: "bold" }}>Web Address:</span>&nbsp;{facility[1]}
+              <span style={{ fontWeight: "bold" }}>Web Address:</span>&nbsp;
+              {facility[1]}
               <br />
-              <span style={{ fontWeight: "bold" }}>Phone Number:</span>&nbsp;{facility[2]}
+              <span style={{ fontWeight: "bold" }}>Phone Number:</span>&nbsp;
+              {facility[2]}
               <br />
-              <span style={{ fontWeight: "bold" }}>Address:</span>&nbsp;{facility[3]}
+              <span style={{ fontWeight: "bold" }}>Address:</span>&nbsp;
+              {facility[3]}
               <br />
-              <span style={{ fontWeight: "bold" }}>Name:</span>&nbsp;{facility[4]}
+              <span style={{ fontWeight: "bold" }}>Name:</span>&nbsp;
+              {facility[4]}
               <br />
-              <span style={{ fontWeight: "bold" }}>Testing Method:</span>&nbsp;{facility[5]}
+              <span style={{ fontWeight: "bold" }}>Testing Method:</span>&nbsp;
+              {facility[5]}
               <br />
-              <span style={{ fontWeight: "bold" }}>Drive Thru Testing:</span>&nbsp;{facility[6]}
+              <span style={{ fontWeight: "bold" }}>Drive Thru Testing:</span>
+              &nbsp;{facility[6]}
               <br />
             </div>
           </Container>
