@@ -12,14 +12,14 @@ import {
   Dropdown,
 } from "react-bootstrap";
 
-/* 5. */
-const GroupZone = () => {
-  /* ALL GROUP ZONE ID'S */
+/* 6. */
+const PHRecommendations = () => {
+  /* ALL RECOMMENDATION ID'S */
   const [allID, setAllID] = useState([]);
 
-  const getAllGroupID = async () => {
+  const getAllRecommendationID = async () => {
     const response = await axios
-      .get("/back-end/groupZone/allGroupID.php")
+      .get("/back-end/PHRecommendations/allID.php")
       .catch((err) => console.log("Error", err));
     if (response && response.data) {
       console.log(response.data);
@@ -27,23 +27,19 @@ const GroupZone = () => {
     }
   };
 
-  /* CREATE GROUP ZONE */
-  const [zoneName, setZoneName] = useState("");
-  const [zoneAddress, setZoneAddress] = useState("");
-  const [zoneDescription, setZoneDescription] = useState("");
+  /* CREATE A RECOMMENDATION */
+  const [instruction, setInstruction] = useState("");
 
   const [refreshDropdownCreate, setRefreshDropdownCreate] = useState(false);
 
-  const createGroupZone = async () => {
+  const createRecommendation = async () => {
     setRefreshDropdownCreate(!refreshDropdownCreate);
     let body = {
-      zoneName: zoneName,
-      zoneAddress: zoneAddress,
-      zoneDescription: zoneDescription,
+        instruction: instruction
     };
     console.log(body);
     const response = await axios
-      .post("back-end/groupZone/createGroup.php", body)
+      .post("/back-end/PHRecommendations/create.php", body)
       .then((response) => {
         if (response && response.data) {
           console.log(response.data);
@@ -54,7 +50,7 @@ const GroupZone = () => {
       });
   };
 
-  /* DELETE GROUP ZONE */
+  /* DELETE A RECOMMENDATION */
   const [deleteID, setDeleteID] = useState("");
   const [refreshDropdownDelete, setRefreshDropdownDelete] = useState(false);
   const handleSelectDeleteID = (e) => {
@@ -65,7 +61,7 @@ const GroupZone = () => {
     if (deleteID !== "") {
       setRefreshDropdownDelete(!refreshDropdownDelete);
       const response = await axios
-        .post("/back-end/groupZone/deleteGroup.php", deleteID)
+        .post("/back-end/PHRecommendations/delete.php", deleteID)
         .then((response) => {
           if (response && response.data) {
             console.log(response.data);
@@ -77,29 +73,23 @@ const GroupZone = () => {
     }
   };
 
-  /* EDIT GROUP ZONE */
-  const [editGroupID, setEditGroupID] = useState("");
-  const [editColumn, setEditColumn] = useState("");
+  /* EDIT A RECOMMENDATION */
+  const [editInformationID, setEditInformationID] = useState("");
   const [editChange, setEditChange] = useState("");
 
   const handleSelectEditID = (e) => {
-    setEditGroupID(e);
-  };
-
-  const handleSelectEditColumn = (e) => {
-    setEditColumn(e);
+    setEditInformationID(e);
   };
 
   const editGroup = async () => {
-    if (editGroupID !== "" && editColumn !== "" && editChange !== "") {
+    if (editInformationID !== "" && editChange !== "") {
       let body = {
-        editGroupID,
-        editColumn,
+        editInformationID,
         editChange,
       };
       console.log(body);
       const response = await axios
-        .post("/back-end/groupZone/editGroup.php", body)
+        .post("/back-end/PHRecommendations/edit.php", body)
         .then((response) => {
           if (response && response.data) {
             console.log(response.data);
@@ -111,38 +101,35 @@ const GroupZone = () => {
     }
   };
 
-  /* DISPLAY GROUP ZONE */
-  const [groupID, setGroupID] = useState("");
-  const [groupZone, setGroupZone] = useState([]);
+  /* DISPLAY ALL RECOMMENDATIONS */
+  const [allRecommendations, setAllRecommendations] = useState([]);
 
-  const getGroupZoneInfo = async () => {
-    if (groupID !== "") {
+  const getAllRecommendations = async () => {
       const response = await axios
-        .post("/back-end/groupZone/displayGroup.php", groupID)
+        .get("/back-end/PHRecommendations/displayAll.php")
         .then((response) => {
           if (response && response.data) {
             console.log(response.data);
-            setGroupZone(response.data);
+            setAllRecommendations(response.data);
           }
         })
         .catch((error) => {
           console.error(error);
         });
-    }
   };
 
-  const handleSelectDisplayID = (e) => {
-    setGroupID(e);
+  const clear = async () => {
+    setAllRecommendations([]);
   };
 
   /* DISPLAY DROPDOWN ID'S */
   useEffect(() => {
-    getAllGroupID();
+    getAllRecommendationID();
   }, [refreshDropdownDelete, refreshDropdownCreate]);
 
   return (
     <div className="home">
-      <div className="person-title">5. Group Zone</div>
+      <div className="person-title">6. PUBLIC HEALTH RECOMMENDATIONS</div>
       <Tabs id="uncontrolled-tab-example">
         <Tab eventKey="Create" title="Create">
           <br />
@@ -150,50 +137,20 @@ const GroupZone = () => {
             <Form>
               <Form.Group as={Row} controlId="">
                 <Form.Label column sm="2">
-                  Zone Name
+                  Instruction
                 </Form.Label>
                 <Col sm="10">
                   <Form.Control
                     type="text"
                     placeholder=""
-                    value={zoneName}
+                    value={instruction}
                     onChange={(e) => {
-                      setZoneName(e.target.value);
+                      setInstruction(e.target.value);
                     }}
                   />
                 </Col>
               </Form.Group>
-              <Form.Group as={Row} controlId="">
-                <Form.Label column sm="2">
-                  Zone Address
-                </Form.Label>
-                <Col sm="10">
-                  <Form.Control
-                    type="text"
-                    placeholder=""
-                    value={zoneAddress}
-                    onChange={(e) => {
-                      setZoneAddress(e.target.value);
-                    }}
-                  />
-                </Col>
-              </Form.Group>
-              <Form.Group as={Row} controlId="">
-                <Form.Label column sm="2">
-                  Zone Description
-                </Form.Label>
-                <Col sm="10">
-                  <Form.Control
-                    type="text"
-                    placeholder=""
-                    value={zoneDescription}
-                    onChange={(e) => {
-                      setZoneDescription(e.target.value);
-                    }}
-                  />
-                </Col>
-              </Form.Group>
-              <Button className="submit" onClick={createGroupZone}>
+              <Button className="submit" onClick={createRecommendation}>
                 Submit
               </Button>
             </Form>
@@ -210,7 +167,7 @@ const GroupZone = () => {
               >
                 <DropdownButton
                   className="dropdown-scroll"
-                  title="Group Zone ID"
+                  title="Instruction ID"
                   onSelect={handleSelectDeleteID}
                   variant="dark"
                 >
@@ -239,7 +196,7 @@ const GroupZone = () => {
               >
                 <DropdownButton
                   className="dropdown-scroll"
-                  title="Group Zone ID"
+                  title="Instruction ID"
                   onSelect={handleSelectEditID}
                   variant="dark"
                 >
@@ -250,24 +207,7 @@ const GroupZone = () => {
                   ))}
                 </DropdownButton>
                 &nbsp;&nbsp;&nbsp;
-                <DropdownButton
-                  className="dropdown-scroll"
-                  title="Choose Field"
-                  onSelect={handleSelectEditColumn}
-                >
-                  <Dropdown.Item eventKey="Zone Name">
-                    {" "}
-                    GroupZone Name{" "}
-                  </Dropdown.Item>
-                  <Dropdown.Item eventKey="Zone Address">
-                    {" "}
-                    GroupZone Address{" "}
-                  </Dropdown.Item>
-                  <Dropdown.Item eventKey="Zone Description">
-                    {" "}
-                    GroupZone Description{" "}
-                  </Dropdown.Item>
-                </DropdownButton>
+               
                 <Col sm="5">
                   <Form.Control
                     type="text"
@@ -294,40 +234,32 @@ const GroupZone = () => {
                 controlId=""
                 className="justify-content-sm-center"
               >
-                <DropdownButton
-                  className="dropdown-scroll"
-                  title="Group Zone ID"
-                  onSelect={handleSelectDisplayID}
-                  variant="dark"
-                >
-                  {allID.map((item) => (
-                    <div key={item}>
-                      <Dropdown.Item eventKey={item}>{item}</Dropdown.Item>
-                    </div>
-                  ))}
-                </DropdownButton>
-                &nbsp;&nbsp;&nbsp;
-                <Button className="submit" onClick={getGroupZoneInfo}>
+                <Button className="submit" onClick={getAllRecommendations}>
                   Submit
                 </Button>
+                &nbsp;
+            <Button onClick={clear} className="submit">
+              Clear
+            </Button>
               </Form.Group>
             </Form>
-            <div>
-              <span style={{ fontWeight: "bold" }}>Group Zone Name:</span>{" "}
-              &nbsp;
-              {groupZone[0]}
+            {allRecommendations.map((item) => (
+          <div
+            controlId=""
+            key={item}
+          >
+           <div style={{textAlign: "left"}}>
+              <span style={{ fontWeight: "bold" }}>ID:</span> &nbsp;
+              {item[0]}
               <br />
-              <span style={{ fontWeight: "bold" }}>Group Zone Address:</span>
-              &nbsp;
-              {groupZone[1]}
-              <br />
-              <span style={{ fontWeight: "bold" }}>
-                Group Zone Description:
-              </span>
-              &nbsp;
-              {groupZone[2]}
+              <span style={{ fontWeight: "bold" }}>Recommendation:</span>&nbsp;
+              {item[1]}
               <br />
             </div>
+            <br />
+            <br />
+          </div>
+        ))}
           </Container>
         </Tab>
       </Tabs>
@@ -335,4 +267,4 @@ const GroupZone = () => {
   );
 };
 
-export default GroupZone;
+export default PHRecommendations;

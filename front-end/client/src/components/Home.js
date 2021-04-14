@@ -7,6 +7,7 @@ import AllFacilities from "./AllFacilities.js";
 import WorkersSpecificFacility from "./workersSpecificFacility.js";
 import Region from "./Region.js";
 import GroupZone from "./GroupZone.js";
+import PHRecommendations from "./PHRecommendations.js";
 
 const Home = () => {
   return (
@@ -28,6 +29,10 @@ const Home = () => {
       <br />
       <br />
       <GroupZone />
+      <br />
+      <br />
+      <br />
+      <PHRecommendations />
       <br />
       <br />
       <br />
