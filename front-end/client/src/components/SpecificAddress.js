@@ -26,6 +26,7 @@ const SpecificAddress = () => {
   return (
     <div className="home">
       <div className="person-title">11.LIST OF PEOPLE IN SPECIFIC ADDRESS</div>
+      <hr />
       <Container>
         <Form>
           <Form.Group
@@ -48,7 +49,6 @@ const SpecificAddress = () => {
             </Button>
           </Form.Group>
         </Form>
-        <hr />
         <br />
         <br />
         {people.map((item) => (
@@ -57,7 +57,7 @@ const SpecificAddress = () => {
             controlId=""
             key={item}
           >
-             <div style={{textAlign: "justify"}}>
+             <div style={{textAlign: "center"}}>
               <span style={{ fontWeight: "bold" }}>PersonID:</span> &nbsp;
               {item[0]}
               <br />

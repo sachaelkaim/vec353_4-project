@@ -27,6 +27,7 @@ const AllFacilities = () => {
   return (
     <div className="home">
       <div className="person-title">12.LIST OF ALL FACILITIES</div>
+          <hr/>
       <Container>
         <Form>
           <Form.Group
@@ -43,7 +44,6 @@ const AllFacilities = () => {
             </Button>
           </Form.Group>
         </Form>
-        <hr/>
         <br />
         <br />
         {allFacilities.map((item) => (

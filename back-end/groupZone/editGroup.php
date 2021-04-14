@@ -12,13 +12,13 @@ $GroupID = mysqli_real_escape_string($conn, trim($data->editGroupID));
 $column = mysqli_real_escape_string($conn, trim($data->editColumn));
 $change = mysqli_real_escape_string($conn, trim($data->editChange));
 if($column === "Zone Name"){
-    $sql = mysqli_query($conn, "UPDATE GroupZone SET $column = '$change' WHERE GroupID = $GroupID");
+    $sql = mysqli_query($conn, "UPDATE GroupZone SET `$column` = '$change' WHERE GroupID = $GroupID");
 }
 if($column == "Zone Address"){
-    $sql = mysqli_query($conn, "UPDATE GroupZone SET $column = '$change' WHERE GroupID = $GroupID");
+    $sql = mysqli_query($conn, "UPDATE GroupZone SET `$column` = '$change' WHERE GroupID = $GroupID");
 }
 if($column == "Zone Description"){
-    $sql = mysqli_query($conn, "UPDATE GroupZone SET $column = '$change' WHERE GroupID = $GroupID");
+    $sql = mysqli_query($conn, "UPDATE GroupZone SET `$column` = '$change' WHERE GroupID = $GroupID");
 }
 echo("Error description: " . mysqli_error($conn));
 $conn->close();
