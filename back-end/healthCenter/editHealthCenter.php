@@ -15,22 +15,22 @@ if($column === "Type"){
     $sql = mysqli_query($conn, "UPDATE PublicHealthCenter SET $column = '$change' WHERE FacilityID = $FacilityID");
 }
 if($column == "Web Address"){
-    $sql = mysqli_query($conn, "UPDATE PublicHealthCenter SET $column = $change WHERE FacilityID = $FacilityID");
+    $sql = mysqli_query($conn, "UPDATE PublicHealthCenter SET $column = '$change' WHERE FacilityID = $FacilityID");
 }
 if($column == "Phone Number"){
-    $sql = mysqli_query($conn, "UPDATE PublicHealthCenter SET $column = $change WHERE FacilityID = $FacilityID");
+    $sql = mysqli_query($conn, "UPDATE PublicHealthCenter SET $column = '$change' WHERE FacilityID = $FacilityID");
 }
 if($column == "Address"){
-    $sql = mysqli_query($conn, "UPDATE PublicHealthCenter SET $column = $change WHERE FacilityID = $FacilityID");
+    $sql = mysqli_query($conn, "UPDATE PublicHealthCenter SET $column = '$change' WHERE FacilityID = $FacilityID");
 }
 if($column == "Name"){
-    $sql = mysqli_query($conn, "UPDATE PublicHealthCenter SET $column = $change WHERE FacilityID = $FacilityID");
+    $sql = mysqli_query($conn, "UPDATE PublicHealthCenter SET $column = '$change' WHERE FacilityID = $FacilityID");
 }
 if($column == "Testing Method"){
-    $sql = mysqli_query($conn, "UPDATE PublicHealthCenter SET $column = $change WHERE FacilityID = $FacilityID");
+    $sql = mysqli_query($conn, "UPDATE PublicHealthCenter SET $column = '$change' WHERE FacilityID = $FacilityID");
 }
 if($column == "Drive Thru Testing"){
-    $sql = mysqli_query($conn, "UPDATE PublicHealthCenter SET $column = $change WHERE FacilityID = $FacilityID");
+    $sql = mysqli_query($conn, "UPDATE PublicHealthCenter SET $column = '$change' WHERE FacilityID = $FacilityID");
 }
 echo("Error description: " . mysqli_error($conn));
 $conn->close();

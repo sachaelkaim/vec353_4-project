@@ -8,22 +8,18 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 require '../db.php';
 /* EDIT PUBLIC HEALTH WORKER */
 $data = json_decode(file_get_contents("php://input"));
-$RegionID = mysqli_real_escape_string($conn, trim($data->editRegionID));
+$GroupID = mysqli_real_escape_string($conn, trim($data->editGroupID));
 $column = mysqli_real_escape_string($conn, trim($data->editColumn));
 $change = mysqli_real_escape_string($conn, trim($data->editChange));
-if($column === "Region Name"){
-    $sql = mysqli_query($conn, "UPDATE Region SET $column = '$change' WHERE RegionID = $RegionID");
+if($column === "Zone Name"){
+    $sql = mysqli_query($conn, "UPDATE GroupZone SET $column = '$change' WHERE GroupID = $GroupID");
 }
-if($column == "Cities"){
-    $sql = mysqli_query($conn, "UPDATE Region SET $column = '$change' WHERE RegionID = $RegionID");
+if($column == "Zone Address"){
+    $sql = mysqli_query($conn, "UPDATE GroupZone SET $column = '$change' WHERE GroupID = $GroupID");
 }
-if($column == "Postal Code"){
-    $sql = mysqli_query($conn, "UPDATE Region SET $column = '$change' WHERE RegionID = $RegionID");
+if($column == "Zone Description"){
+    $sql = mysqli_query($conn, "UPDATE GroupZone SET $column = '$change' WHERE GroupID = $GroupID");
 }
-if($column == "Alert"){
-    $sql = mysqli_query($conn, "UPDATE Region SET $column = '$change' WHERE RegionID = $RegionID");
-}
-
 echo("Error description: " . mysqli_error($conn));
 $conn->close();
 ?>

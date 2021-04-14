@@ -12,14 +12,14 @@ import {
   Dropdown,
 } from "react-bootstrap";
 
-/* 4. */
-const Region = () => {
-  /* ALL REGION ID'S */
+/* 5. */
+const GroupZone = () => {
+  /* ALL GROUP ZONE ID'S */
   const [allID, setAllID] = useState([]);
 
-  const getAllRegionID = async () => {
+  const getAllGroupID = async () => {
     const response = await axios
-      .get("/back-end/region/allRegionID.php")
+      .get("/back-end/groupZone/allGroupID.php")
       .catch((err) => console.log("Error", err));
     if (response && response.data) {
       console.log(response.data);
@@ -27,25 +27,23 @@ const Region = () => {
     }
   };
 
-  /* CREATE REGION */
-  const [regionName, setRegionName] = useState("");
-  const [cities, setCities] = useState("");
-  const [postalCodes, setPostalCodes] = useState("");
-  const [alert, setAlert] = useState("");
+  /* CREATE GROUP ZONE */
+  const [zoneName, setZoneName] = useState("");
+  const [zoneAddress, setZoneAddress] = useState("");
+  const [zoneDescription, setZoneDescription] = useState("");
 
   const [refreshDropdownCreate, setRefreshDropdownCreate] = useState(false);
 
-  const createRegion = async () => {
+  const createGroupZone = async () => {
     setRefreshDropdownCreate(!refreshDropdownCreate);
     let body = {
-      regionName: regionName,
-      cities: cities,
-      postalCodes: postalCodes,
-      alert: alert,
+      zoneName: zoneName,
+      zoneAddress: zoneAddress,
+      zoneDescription: zoneDescription,
     };
     console.log(body);
     const response = await axios
-      .post("back-end/region/createRegion.php", body)
+      .post("back-end/groupZone/createGroup.php", body)
       .then((response) => {
         if (response && response.data) {
           console.log(response.data);
@@ -56,18 +54,18 @@ const Region = () => {
       });
   };
 
-  /* DELETE REGION */
+  /* DELETE GROUP ZONE */
   const [deleteID, setDeleteID] = useState("");
   const [refreshDropdownDelete, setRefreshDropdownDelete] = useState(false);
   const handleSelectDeleteID = (e) => {
     setDeleteID(e);
   };
-  const deleteRegion = async () => {
+  const deleteGroup = async () => {
     console.log(deleteID);
     if (deleteID !== "") {
       setRefreshDropdownDelete(!refreshDropdownDelete);
       const response = await axios
-        .post("/back-end/region/deleteRegion.php", deleteID)
+        .post("/back-end/groupZone/deleteGroup.php", deleteID)
         .then((response) => {
           if (response && response.data) {
             console.log(response.data);
@@ -79,47 +77,47 @@ const Region = () => {
     }
   };
 
-  /* EDIT REGION */
-  const [editRegionID, setEditRegionID] = useState("");
+  /* EDIT GROUP ZONE */
+  const [editGroupID, setEditGroupID] = useState("");
   const [editColumn, setEditColumn] = useState("");
   const [editChange, setEditChange] = useState("");
 
   const handleSelectEditID = (e) => {
-    setEditRegionID(e);
+    setEditGroupID(e);
   };
 
   const handleSelectEditColumn = (e) => {
     setEditColumn(e);
   };
 
-  const editRegion = async () => {
-    if (editRegionID !== "" && editColumn !== "" && editChange !== "") {
+  const editGroup = async () => {
+    if (editGroupID !== "" && editColumn !== "" && editChange !== "") {
       let body = {
-        editRegionID,
+        editGroupID,
         editColumn,
         editChange,
       };
       console.log(body);
       const response = await axios
-        .post("/back-end/region/editRegion.php", body)
+        .post("/back-end/groupZone/editGroup.php", body)
         .catch((error) => {
           console.error(error);
         });
     }
   };
 
-  /* DISPLAY REGION */
-  const [regionID, setRegionID] = useState("");
-  const [region, setRegion] = useState([]);
+  /* DISPLAY GROUP ZONE */
+  const [groupID, setGroupID] = useState("");
+  const [groupZone, setGroupZone] = useState([]);
 
-  const getRegionInfo = async () => {
-    if (regionID !== "") {
+  const getGroupZoneInfo = async () => {
+    if (groupID !== "") {
       const response = await axios
-        .post("/back-end/region/displayRegion.php", regionID)
+        .post("/back-end/groupZone/displayGroup.php", groupID)
         .then((response) => {
           if (response && response.data) {
             console.log(response.data);
-            setRegion(response.data);
+            setGroupZone(response.data);
           }
         })
         .catch((error) => {
@@ -129,17 +127,17 @@ const Region = () => {
   };
 
   const handleSelectDisplayID = (e) => {
-    setRegionID(e);
+    setGroupID(e);
   };
 
   /* DISPLAY DROPDOWN ID'S */
   useEffect(() => {
-    getAllRegionID();
+    getAllGroupID();
   }, [refreshDropdownDelete, refreshDropdownCreate]);
 
   return (
     <div className="home">
-      <div className="person-title">4.Region</div>
+      <div className="person-title">5. Group Zone</div>
       <Tabs id="uncontrolled-tab-example">
         <Tab eventKey="Create" title="Create">
           <br />
@@ -147,65 +145,50 @@ const Region = () => {
             <Form>
               <Form.Group as={Row} controlId="">
                 <Form.Label column sm="2">
-                  Region Name
+                  Zone Name
                 </Form.Label>
                 <Col sm="10">
                   <Form.Control
                     type="text"
                     placeholder=""
-                    value={regionName}
+                    value={zoneName}
                     onChange={(e) => {
-                      setRegionName(e.target.value);
+                      setZoneName(e.target.value);
                     }}
                   />
                 </Col>
               </Form.Group>
               <Form.Group as={Row} controlId="">
                 <Form.Label column sm="2">
-                  Cities
+                  Zone Address
                 </Form.Label>
                 <Col sm="10">
                   <Form.Control
                     type="text"
                     placeholder=""
-                    value={cities}
+                    value={zoneAddress}
                     onChange={(e) => {
-                      setCities(e.target.value);
+                      setZoneAddress(e.target.value);
                     }}
                   />
                 </Col>
               </Form.Group>
               <Form.Group as={Row} controlId="">
                 <Form.Label column sm="2">
-                  Postal Code
+                  Zone Description
                 </Form.Label>
                 <Col sm="10">
                   <Form.Control
                     type="text"
                     placeholder=""
-                    value={postalCodes}
+                    value={zoneDescription}
                     onChange={(e) => {
-                      setPostalCodes(e.target.value);
+                      setZoneDescription(e.target.value);
                     }}
                   />
                 </Col>
               </Form.Group>
-              <Form.Group as={Row} controlId="">
-                <Form.Label column sm="2">
-                  Alert
-                </Form.Label>
-                <Col sm="10">
-                  <Form.Control
-                    type="text"
-                    placeholder=""
-                    value={alert}
-                    onChange={(e) => {
-                      setAlert(e.target.value);
-                    }}
-                  />
-                </Col>
-              </Form.Group>
-              <Button className="submit" onClick={createRegion}>
+              <Button className="submit" onClick={createGroupZone}>
                 Submit
               </Button>
             </Form>
@@ -222,7 +205,7 @@ const Region = () => {
               >
                 <DropdownButton
                   className="dropdown-scroll"
-                  title="Region ID"
+                  title="Group Zone ID"
                   onSelect={handleSelectDeleteID}
                   variant="dark"
                 >
@@ -233,7 +216,7 @@ const Region = () => {
                   ))}
                 </DropdownButton>
                 &nbsp;&nbsp;&nbsp;
-                <Button className="submit" onClick={deleteRegion}>
+                <Button className="submit" onClick={deleteGroup}>
                   Submit
                 </Button>
               </Form.Group>
@@ -251,7 +234,7 @@ const Region = () => {
               >
                 <DropdownButton
                   className="dropdown-scroll"
-                  title="Region ID"
+                  title="Group Zone ID"
                   onSelect={handleSelectEditID}
                   variant="dark"
                 >
@@ -267,14 +250,18 @@ const Region = () => {
                   title="Choose Field"
                   onSelect={handleSelectEditColumn}
                 >
-                  <Dropdown.Item eventKey="Region Name">
-                    Region Name
+                  <Dropdown.Item eventKey="Zone Name">
+                    {" "}
+                    GroupZone Name{" "}
                   </Dropdown.Item>
-                  <Dropdown.Item eventKey="Cities">Cities</Dropdown.Item>
-                  <Dropdown.Item eventKey="Postal Codes">
-                    Postal Code
+                  <Dropdown.Item eventKey="Zone Address">
+                    {" "}
+                    GroupZone Address{" "}
                   </Dropdown.Item>
-                  <Dropdown.Item eventKey="Alert ">Alert </Dropdown.Item>
+                  <Dropdown.Item eventKey="Zone Description">
+                    {" "}
+                    GroupZone Description{" "}
+                  </Dropdown.Item>
                 </DropdownButton>
                 <Col sm="5">
                   <Form.Control
@@ -286,7 +273,7 @@ const Region = () => {
                     }}
                   />
                 </Col>
-                <Button onClick={editRegion} className="submit">
+                <Button onClick={editGroup} className="submit">
                   Submit
                 </Button>
               </Form.Group>
@@ -304,7 +291,7 @@ const Region = () => {
               >
                 <DropdownButton
                   className="dropdown-scroll"
-                  title="Region ID"
+                  title="Group Zone ID"
                   onSelect={handleSelectDisplayID}
                   variant="dark"
                 >
@@ -315,23 +302,25 @@ const Region = () => {
                   ))}
                 </DropdownButton>
                 &nbsp;&nbsp;&nbsp;
-                <Button className="submit" onClick={getRegionInfo}>
+                <Button className="submit" onClick={getGroupZoneInfo}>
                   Submit
                 </Button>
               </Form.Group>
             </Form>
             <div>
-              <span style={{ fontWeight: "bold" }}>Region Name:</span> &nbsp;
-              {region[0]}
+              <span style={{ fontWeight: "bold" }}>Group Zone Name:</span>{" "}
+              &nbsp;
+              {groupZone[0]}
               <br />
-              <span style={{ fontWeight: "bold" }}>cities:</span>&nbsp;
-              {region[1]}
+              <span style={{ fontWeight: "bold" }}>Group Zone Address:</span>
+              &nbsp;
+              {groupZone[1]}
               <br />
-              <span style={{ fontWeight: "bold" }}>Postal Codes:</span>&nbsp;
-              {region[2]}
-              <br />
-              <span style={{ fontWeight: "bold" }}>Alert:</span>&nbsp;
-              {region[3]}
+              <span style={{ fontWeight: "bold" }}>
+                Group Zone Description:
+              </span>
+              &nbsp;
+              {groupZone[2]}
               <br />
             </div>
           </Container>
@@ -341,4 +330,4 @@ const Region = () => {
   );
 };
 
-export default Region;
+export default GroupZone;

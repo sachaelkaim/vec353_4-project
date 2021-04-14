@@ -6,6 +6,7 @@ import SpecificAddress from "./SpecificAddress.js";
 import AllFacilities from "./AllFacilities.js";
 import WorkersSpecificFacility from "./workersSpecificFacility.js";
 import Region from "./Region.js";
+import GroupZone from "./GroupZone.js";
 
 const Home = () => {
   return (
@@ -23,6 +24,10 @@ const Home = () => {
       <br />
       <br />
       <Region />
+      <br />
+      <br />
+      <br />
+      <GroupZone />
       <br />
       <br />
       <br />
