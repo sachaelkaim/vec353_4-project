@@ -10,12 +10,10 @@ require '../db.php';
 $data = json_decode(file_get_contents("php://input"));
 
 $regionName = mysqli_real_escape_string($conn, trim($data->regionName));
-$cities = mysqli_real_escape_string($conn, trim($data->cities));
-$postalCodes = mysqli_real_escape_string($conn, trim($data->postalCodes));
 $alert = mysqli_real_escape_string($conn, trim($data->alert));
 
-$sql = mysqli_query($conn, "INSERT INTO Region (`Region Name`, `Cities`, `Postal Codes`, `Alert`)
-VALUES ('$regionName', '$cities', '$postalCodes', '$alert') ");
+$sql = mysqli_query($conn, "INSERT INTO Region (`Region Name`, `Alert`)
+VALUES ('$regionName', '$alert') ");
 echo("Error description: " . mysqli_error($conn));
 
 $conn->close();
