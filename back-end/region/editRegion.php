@@ -11,19 +11,23 @@ $data = json_decode(file_get_contents("php://input"));
 $RegionID = mysqli_real_escape_string($conn, trim($data->editRegionID));
 $column = mysqli_real_escape_string($conn, trim($data->editColumn));
 $change = mysqli_real_escape_string($conn, trim($data->editChange));
+
+
 if($column === "Region Name"){
     $sql = mysqli_query($conn, "UPDATE Region SET $column = '$change' WHERE RegionID = $RegionID");
 }
-if($column == "Cities"){
-    $sql = mysqli_query($conn, "UPDATE Region SET $column = '$change' WHERE RegionID = $RegionID");
-}
-if($column == "Postal Code"){
-    $sql = mysqli_query($conn, "UPDATE Region SET $column = '$change' WHERE RegionID = $RegionID");
-}
 if($column == "Alert"){
-    $sql = mysqli_query($conn, "UPDATE Region SET $column = '$change' WHERE RegionID = $RegionID");
+    $sql1 = mysqli_query($conn, "SELECT Alert FROM Region WHERE RegionID = $RegionID");
+    $result = mysqli_fetch_assoc($sql1);
+    $resultstring = $result['Alert'];
+    $sql2 = number_format($resultstring);
+    $change1 = number_format($change);
+    if($change1 == ($sql2+1) || $change1  == ($sql2-1)){
+        $sql = mysqli_query($conn, "UPDATE Region SET $column = '$change' WHERE RegionID = $RegionID");
+        echo json_encode("Alert successfully updated", JSON_PRETTY_PRINT);
+    }
+    else
+    echo json_encode("Can only increment or decrement Alert by 1", JSON_PRETTY_PRINT);
 }
-
-echo("Error description: " . mysqli_error($conn));
 $conn->close();
 ?>

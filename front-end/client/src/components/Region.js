@@ -29,8 +29,6 @@ const Region = () => {
 
   /* CREATE REGION */
   const [regionName, setRegionName] = useState("");
-  const [cities, setCities] = useState("");
-  const [postalCodes, setPostalCodes] = useState("");
   const [alert, setAlert] = useState("");
 
   const [refreshDropdownCreate, setRefreshDropdownCreate] = useState(false);
@@ -39,8 +37,6 @@ const Region = () => {
     setRefreshDropdownCreate(!refreshDropdownCreate);
     let body = {
       regionName: regionName,
-      cities: cities,
-      postalCodes: postalCodes,
       alert: alert,
     };
     console.log(body);
@@ -83,7 +79,7 @@ const Region = () => {
   const [editRegionID, setEditRegionID] = useState("");
   const [editColumn, setEditColumn] = useState("");
   const [editChange, setEditChange] = useState("");
-
+  const [alertResponse, setAlertResponse] = useState("");
   const handleSelectEditID = (e) => {
     setEditRegionID(e);
   };
@@ -93,6 +89,7 @@ const Region = () => {
   };
 
   const editRegion = async () => {
+    setAlertResponse("");
     if (editRegionID !== "" && editColumn !== "" && editChange !== "") {
       let body = {
         editRegionID,
@@ -102,6 +99,11 @@ const Region = () => {
       console.log(body);
       const response = await axios
         .post("/back-end/region/editRegion.php", body)
+        .then((response) => {
+          if (response && response.data) {
+            setAlertResponse(response.data);
+          }
+        })
         .catch((error) => {
           console.error(error);
         });
@@ -156,36 +158,6 @@ const Region = () => {
                     value={regionName}
                     onChange={(e) => {
                       setRegionName(e.target.value);
-                    }}
-                  />
-                </Col>
-              </Form.Group>
-              <Form.Group as={Row} controlId="">
-                <Form.Label column sm="2">
-                  Cities
-                </Form.Label>
-                <Col sm="10">
-                  <Form.Control
-                    type="text"
-                    placeholder=""
-                    value={cities}
-                    onChange={(e) => {
-                      setCities(e.target.value);
-                    }}
-                  />
-                </Col>
-              </Form.Group>
-              <Form.Group as={Row} controlId="">
-                <Form.Label column sm="2">
-                  Postal Code
-                </Form.Label>
-                <Col sm="10">
-                  <Form.Control
-                    type="text"
-                    placeholder=""
-                    value={postalCodes}
-                    onChange={(e) => {
-                      setPostalCodes(e.target.value);
                     }}
                   />
                 </Col>
@@ -270,11 +242,9 @@ const Region = () => {
                   <Dropdown.Item eventKey="Region Name">
                     Region Name
                   </Dropdown.Item>
-                  <Dropdown.Item eventKey="Cities">Cities</Dropdown.Item>
-                  <Dropdown.Item eventKey="Postal Codes">
-                    Postal Code
-                  </Dropdown.Item>
-                  <Dropdown.Item eventKey="Alert ">Alert </Dropdown.Item>
+                  <Dropdown.Item eventKey="Alert ">
+                    Alert 
+                    </Dropdown.Item>
                 </DropdownButton>
                 <Col sm="5">
                   <Form.Control
@@ -291,6 +261,7 @@ const Region = () => {
                 </Button>
               </Form.Group>
             </Form>
+            {alertResponse}
           </Container>
         </Tab>
         <Tab eventKey="Display" title="Display">
@@ -324,14 +295,8 @@ const Region = () => {
               <span style={{ fontWeight: "bold" }}>Region Name:</span> &nbsp;
               {region[0]}
               <br />
-              <span style={{ fontWeight: "bold" }}>cities:</span>&nbsp;
-              {region[1]}
-              <br />
-              <span style={{ fontWeight: "bold" }}>Postal Codes:</span>&nbsp;
-              {region[2]}
-              <br />
               <span style={{ fontWeight: "bold" }}>Alert:</span>&nbsp;
-              {region[3]}
+              {region[1]}
               <br />
             </div>
           </Container>

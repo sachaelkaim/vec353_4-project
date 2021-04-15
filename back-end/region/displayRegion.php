@@ -15,8 +15,6 @@ $storeArray = array();
 
 while ($row = mysqli_fetch_array($sql)) {
   $storeArray[] = $row["Region Name"];
-  $storeArray[] = $row["Cities"];
-  $storeArray[] = $row["Postal Codes"];
   $storeArray[] = $row["Alert"];
 }
 echo json_encode($storeArray, JSON_PRETTY_PRINT);
