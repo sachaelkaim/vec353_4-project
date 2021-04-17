@@ -10,6 +10,8 @@ import GroupZone from "./GroupZone.js";
 import PHRecommendations from "./PHRecommendations.js";
 import AllRegions from "./AllRegions.js";
 import ResultTestPeople from "./ResultTestPeople.js";
+import AllMessages from "./AllMessages.js";
+import DetailProgress from "./DetailProgress.js";
 
 const Home = () => {
   return (
@@ -35,6 +37,14 @@ const Home = () => {
       <br />
       <br />
       <PHRecommendations />
+      <br />
+      <br />
+      <br />
+      <DetailProgress />
+      <br />
+      <br />
+      <br />
+      <AllMessages />
       <br />
       <br />
       <br />

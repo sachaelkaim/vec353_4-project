@@ -141,7 +141,7 @@ const Region = () => {
 
   return (
     <div className="home">
-      <div className="person-title">4.Region</div>
+      <div className="person-title">4 - 7.REGION AND SET ALERT</div>
       <Tabs id="uncontrolled-tab-example">
         <Tab eventKey="Create" title="Create">
           <br />
