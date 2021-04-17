@@ -142,7 +142,7 @@ const GroupZone = () => {
 
   return (
     <div className="home">
-      <div className="person-title">5. Group Zone</div>
+      <div className="person-title">5. GROUP ZONE</div>
       <Tabs id="uncontrolled-tab-example">
         <Tab eventKey="Create" title="Create">
           <br />
