@@ -9,21 +9,23 @@ const AllMessages = () => {
     const [messages, setMessages] = useState([]);
     
     const getAllMessages = async () => {
-      let body = {
-        date1: date1,
-        date2: date2
-      };
-      const response = await axios
-        .post("/back-end/allMessages/getAllMessages.php", body)
-        .then((response) => {
-          if (response && response.data) {
-            console.log(response.data);
-            setMessages(response.data);
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      if(date1 != "" && date2 != null){
+        let body = {
+          date1: date1,
+          date2: date2
+        };
+        const response = await axios
+          .post("/back-end/allMessages/getAllMessages.php", body)
+          .then((response) => {
+            if (response && response.data) {
+              console.log(response.data);
+              setMessages(response.data);
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
     };
   
     return (

@@ -27,7 +27,8 @@ const WorkersSpecificFacility = () => {
   };
 
   const getWorkersFacility = async () => {
-    if (facilityID !== "") {
+    if (facilityID !== null || facilityID !== "") {
+      console.log(facilityID)
       const response = await axios
         .post("/back-end/specificFacility/getWorkers.php", facilityID)
         .then((response) => {
@@ -79,7 +80,7 @@ const WorkersSpecificFacility = () => {
             <Button className="submit" onClick={getWorkersFacility}>Submit</Button>
           </Form.Group>
         </Form>
-        {workers.map((item) => (
+        {workers !== null && workers.map((item) => (
           <div
             style={{ width: "350px", display: "inline-block" }}
             controlId=""

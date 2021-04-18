@@ -6,7 +6,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require '../db.php';
 
-/* ALL PUBLIC HEALTH CENTER ID */
+/* ALL GROUP ZONE ID */
 $sql = mysqli_query($conn, "SELECT * FROM GroupZone");
 $storeArray = array();
 
