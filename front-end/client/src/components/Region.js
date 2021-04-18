@@ -102,6 +102,7 @@ const Region = () => {
         .then((response) => {
           if (response && response.data) {
             setAlertResponse(response.data);
+            console.log(alertResponse);
           }
         })
         .catch((error) => {
@@ -242,9 +243,7 @@ const Region = () => {
                   <Dropdown.Item eventKey="Region Name">
                     Region Name
                   </Dropdown.Item>
-                  <Dropdown.Item eventKey="Alert ">
-                    Alert 
-                    </Dropdown.Item>
+                  <Dropdown.Item eventKey="Alert ">Alert</Dropdown.Item>
                 </DropdownButton>
                 <Col sm="5">
                   <Form.Control

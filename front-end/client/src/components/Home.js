@@ -14,6 +14,7 @@ import AllMessages from "./AllMessages.js";
 import DetailProgress from "./DetailProgress.js";
 import Report from "./Report.js";
 import PositiveFacility from "./PositiveFacility.js";
+import SymptomsFollowUp from "./SymptomsFollowUp.js";
 
 const Home = () => {
   return (
@@ -39,6 +40,10 @@ const Home = () => {
       <br />
       <br />
       <PHRecommendations />
+      <br />
+      <br />
+      <br />
+      <SymptomsFollowUp />
       <br />
       <br />
       <br />
