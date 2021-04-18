@@ -12,6 +12,8 @@ import AllRegions from "./AllRegions.js";
 import ResultTestPeople from "./ResultTestPeople.js";
 import AllMessages from "./AllMessages.js";
 import DetailProgress from "./DetailProgress.js";
+import Report from "./Report.js";
+import PositiveFacility from "./PositiveFacility.js";
 
 const Home = () => {
   return (
@@ -65,6 +67,14 @@ const Home = () => {
       <br />
       <br />
       <WorkersSpecificFacility />
+      <br />
+      <br />
+      <br />
+      <PositiveFacility />
+      <br />
+      <br />
+      <br />
+      <Report />
     </div>
   );
 };

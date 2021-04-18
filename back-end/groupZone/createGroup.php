@@ -6,7 +6,7 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 require '../db.php';
-/* CREATE PUBLIC HEALTH WORKER */
+/* CREATE GROUP ZONE*/
 $data = json_decode(file_get_contents("php://input"));
 
 $zoneName = mysqli_real_escape_string($conn, trim($data->zoneName));

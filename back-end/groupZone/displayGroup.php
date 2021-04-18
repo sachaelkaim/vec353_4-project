@@ -7,7 +7,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require '../db.php';
 
-/* DISPLAY PERSON */
+/* DISPLAY GROUP ZONE */
 $data = json_decode(file_get_contents("php://input"));
 
 $sql = mysqli_query($conn, "SELECT * FROM GroupZone WHERE GroupID = $data");

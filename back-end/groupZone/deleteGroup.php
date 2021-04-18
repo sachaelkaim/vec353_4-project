@@ -7,9 +7,9 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require '../db.php';
 
-/* DELETE PUBLIC HEALTH WORKER */
+/* DELETE GROUP ZONE */
 $data = json_decode(file_get_contents("php://input"));
-$sql = mysqli_query($conn, "DELETE FROM GroupZone WHERE ZoneID = $data");
+$sql = mysqli_query($conn, "DELETE FROM GroupZone WHERE GroupID = $data");
 echo("Error description: " . mysqli_error($conn));
 $conn->close();
 ?>

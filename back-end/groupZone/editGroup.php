@@ -6,7 +6,7 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 require '../db.php';
-/* EDIT PUBLIC HEALTH WORKER */
+/* EDIT GROUP ZONE */
 $data = json_decode(file_get_contents("php://input"));
 $GroupID = mysqli_real_escape_string($conn, trim($data->editGroupID));
 $column = mysqli_real_escape_string($conn, trim($data->editColumn));
